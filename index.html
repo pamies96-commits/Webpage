@@ -1,89 +1,124 @@
-<style>
-  body {
-    margin: 0;
-    padding: 0;
-    background: linear-gradient(135deg, #ff4fa3, #ffb3d9);
-    text-align: center;
-    font-family: 'Montserrat', sans-serif;
-    color: #fff;
-  }
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>30 anys Paula 🎉</title>
 
-  h1 {
-    margin-top: 40px;
-    font-size: 3em;
-    font-weight: 700;
-    text-shadow: 2px 2px #ff2f92;
-  }
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 
-  .subtitle {
-    font-size: 1.3em;
-    margin: 15px;
-    opacity: 0.9;
-  }
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #ff4fa3, #ffb3d9);
+      text-align: center;
+      font-family: 'Montserrat', sans-serif;
+      color: #fff;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
 
-  .card {
-    background: rgba(255,255,255,0.15);
-    margin: 30px auto;
-    padding: 25px;
-    max-width: 600px;
-    border-radius: 18px;
-    box-shadow: 0 8px 18px rgba(0,0,0,0.2);
-    backdrop-filter: blur(4px);
-    position: relative;
-    overflow: hidden;
-  }
+    h1 {
+      font-size: 2em;
+      font-weight: 700;
+      text-shadow: 2px 2px #ff2f92;
+      margin: 10px 0;
+    }
 
-  p {
-    font-size: 1.2em;
-    margin: 12px 0;
-    color: transparent; /* hides text but keeps the element for layout */
-  }
+    .card {
+      position: relative;
+      width: 90%;
+      max-width: 400px;
+      height: 60vh; /* fits nicely on most phones */
+      background: rgba(255,255,255,0.15);
+      border-radius: 18px;
+      backdrop-filter: blur(6px);
+      box-shadow: 0 8px 18px rgba(0,0,0,0.2);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
 
-  /* Image tweaks */
-  img {
-    max-width: 80%; /* smaller for mobile */
-    border-radius: 18px;
-    margin-top: 20px;
-    opacity: 0;
-    transform: scale(0.8);
-    transition: all 0.5s ease;
-  }
+    /* Hide card text but keep layout if needed */
+    .card p {
+      display: none;
+    }
 
-  img.show {
-    opacity: 1;
-    transform: scale(1);
-  }
+    /* Image */
+    img {
+      max-width: 70%;
+      max-height: 70%;
+      border-radius: 18px;
+      opacity: 0;
+      transform: scale(0.8);
+      transition: all 0.5s ease;
+    }
 
-  /* Cover as click area */
-  .cover {
-    position: absolute;
-    inset: 0;
-    background: rgba(255,255,255,0.2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    font-size: 2em; /* now it’s just an icon hint */
-    font-weight: 700;
-    backdrop-filter: blur(6px);
-  }
+    img.show {
+      opacity: 1;
+      transform: scale(1);
+    }
 
-  .cover.hidden {
-    display: none;
-  }
+    /* Cover overlay */
+    .cover {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      font-size: 3em; /* icon hint */
+      z-index: 10; /* on top */
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(6px);
+      transition: all 0.3s ease;
+    }
 
-  @media (max-width: 600px) {
-    h1 { font-size: 2.2em; }
-    p { font-size: 1.05em; }
-  }
-</style>
+    .cover.hidden {
+      display: none;
+    }
 
-<div class="card">
-  <p>30 anys.</p>
-  <p>Ni jove ni gran.</p>
-  <p>Exactament en el teu prime.</p>
+    @media (max-width: 600px) {
+      h1 { font-size: 1.6em; }
+      .cover { font-size: 2.5em; }
+      img { max-width: 80%; max-height: 65%; }
+      .card { height: 55vh; }
+    }
+  </style>
+</head>
+<body>
 
-  <img id="photo" src="foto.jpg" alt="Paula mode aniversari">
+  <h1>🎂 Paula fa 30 🎂</h1>
 
-  <div id="cover" class="cover">🎁✨</div>
-</div>
+  <div class="card">
+    <!-- image hidden at start -->
+    <img id="photo" src="foto.jpg" alt="Paula mode aniversari">
+
+    <!-- overlay with icons as hint -->
+    <div id="cover" class="cover">🎁✨</div>
+  </div>
+
+  <!-- background music -->
+  <audio id="bgm" loop>
+    <source src="song.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    const audio = document.getElementById('bgm');
+    const photo = document.getElementById('photo');
+    const cover = document.getElementById('cover');
+
+    cover.addEventListener('click', () => {
+      cover.classList.add('hidden');
+      photo.classList.add('show');
+      audio.play().catch(() => console.log("Autoplay prevented"));
+    });
+  </script>
+</body>
+</html>
