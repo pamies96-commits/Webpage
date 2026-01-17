@@ -16,6 +16,7 @@
       text-align: center;
       font-family: 'Montserrat', sans-serif;
       color: #fff;
+      overflow-x: hidden;
     }
 
     h1 {
@@ -25,10 +26,12 @@
       text-shadow: 2px 2px #ff2f92;
     }
 
-    .subtitle {
+    .subtitle, .card p {
       font-size: 1.3em;
-      margin: 15px;
-      opacity: 0.9;
+      margin: 15px 0;
+      opacity: 0;
+      transform: scale(0.8);
+      transition: all 0.6s ease;
     }
 
     .card {
@@ -43,22 +46,16 @@
       overflow: hidden;
     }
 
-    p {
-      font-size: 1.2em;
-      margin: 12px 0;
-    }
-
-    /* Hidden photo */
     img {
       max-width: 90%;
       border-radius: 18px;
       margin-top: 20px;
       opacity: 0;
       transform: scale(0.8);
-      transition: all 0.5s ease;
+      transition: all 0.6s ease;
     }
 
-    img.show {
+    img.show, .card p.show {
       opacity: 1;
       transform: scale(1);
     }
@@ -75,15 +72,17 @@
       font-size: 1.2em;
       font-weight: 700;
       backdrop-filter: blur(6px);
+      transition: all 0.5s ease;
     }
 
     .cover.hidden {
-      display: none;
+      opacity: 0;
+      pointer-events: none;
     }
 
     @media (max-width: 600px) {
       h1 { font-size: 2.2em; }
-      p { font-size: 1.05em; }
+      .card p { font-size: 1.05em; }
     }
   </style>
 </head>
@@ -95,13 +94,12 @@
   </audio>
 
   <h1>🎂 Paula fa 30 🎂</h1>
-  <div class="subtitle">Benvinguda a l'edat on ja ho saps tot (però no gaire)</div>
 
   <div class="card">
 
-    <p>30 anys.</p>
-    <p>Ni jove ni gran.</p>
-    <p>Exactament en el teu prime.</p>
+    <p class="hidden">30 anys.</p>
+    <p class="hidden">Ni jove ni gran.</p>
+    <p class="hidden">Exactament en el teu prime.</p>
 
     <img id="photo" src="foto.jpg" alt="Paula mode aniversari">
 
@@ -111,15 +109,81 @@
 
   </div>
 
+  <!-- Confetti canvas -->
+  <canvas id="confetti"></canvas>
+
   <script>
     const audio = document.getElementById('bgm');
     const photo = document.getElementById('photo');
     const cover = document.getElementById('cover');
+    const texts = document.querySelectorAll('.card p');
+
+    // Confetti setup
+    const canvas = document.getElementById('confetti');
+    const ctx = canvas.getContext('2d');
+    let confettiElements = [];
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    function createConfetti() {
+      for (let i = 0; i < 150; i++) {
+        confettiElements.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height - canvas.height,
+          r: Math.random() * 6 + 4,
+          d: Math.random() * 10 + 5,
+          color: `hsl(${Math.random() * 360}, 100%, 50%)`,
+          tilt: Math.random() * 10 - 10,
+          tiltAngleIncrement: Math.random() * 0.07 + 0.05
+        });
+      }
+    }
+
+    function drawConfetti() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      confettiElements.forEach(c => {
+        ctx.beginPath();
+        ctx.lineWidth = c.r / 2;
+        ctx.strokeStyle = c.color;
+        ctx.moveTo(c.x + c.tilt + c.r / 4, c.y);
+        ctx.lineTo(c.x + c.tilt, c.y + c.tilt + c.r / 4);
+        ctx.stroke();
+      });
+      updateConfetti();
+    }
+
+    function updateConfetti() {
+      confettiElements.forEach(c => {
+        c.tiltAngle += c.tiltAngleIncrement;
+        c.y += (Math.cos(c.d) + 3 + c.r / 2) / 2;
+        c.tilt = Math.sin(c.tiltAngle) * 15;
+        if (c.y > canvas.height) {
+          c.y = -10;
+          c.x = Math.random() * canvas.width;
+        }
+      });
+      requestAnimationFrame(drawConfetti);
+    }
 
     cover.addEventListener('click', () => {
       cover.classList.add('hidden');
+
+      // Mostrar texto y foto
       photo.classList.add('show');
+      texts.forEach(t => t.classList.add('show'));
+
+      // Reproducir música
       audio.play();
+
+      // Confetti
+      createConfetti();
+      drawConfetti();
+    });
+
+    // Ajuste de canvas al redimensionar
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
     });
   </script>
 
