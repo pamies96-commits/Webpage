@@ -1,127 +1,80 @@
-<!DOCTYPE html>
-<html lang="ca">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>30 anys Paula 🎉</title>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #ff4fa3, #ffb3d9);
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    color: #fff;
+  }
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  h1 {
+    margin-top: 30px;
+    font-size: 2em;
+    font-weight: 700;
+    text-shadow: 2px 2px #ff2f92;
+  }
 
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      background: linear-gradient(135deg, #ff4fa3, #ffb3d9);
-      text-align: center;
-      font-family: 'Montserrat', sans-serif;
-      color: #fff;
-    }
+  .subtitle {
+    display: none; /* hide subtitle on mobile */
+  }
 
-    h1 {
-      margin-top: 40px;
-      font-size: 3em;
-      font-weight: 700;
-      text-shadow: 2px 2px #ff2f92;
-    }
+  .card {
+    background: rgba(255,255,255,0.15);
+    margin: 20px auto;
+    padding: 15px;
+    max-width: 90%;
+    border-radius: 18px;
+    box-shadow: 0 8px 18px rgba(0,0,0,0.2);
+    backdrop-filter: blur(4px);
+    position: relative;
+    overflow: hidden;
+  }
 
-    .subtitle {
-      font-size: 1.3em;
-      margin: 15px;
-      opacity: 0.9;
-    }
+  /* Hide text inside card */
+  .card p {
+    display: none;
+  }
 
-    .card {
-      background: rgba(255,255,255,0.15);
-      margin: 30px auto;
-      padding: 25px;
-      max-width: 600px;
-      border-radius: 18px;
-      box-shadow: 0 8px 18px rgba(0,0,0,0.2);
-      backdrop-filter: blur(4px);
-      position: relative;
-      overflow: hidden;
-    }
+  /* Image tweaks */
+  img {
+    max-width: 70%; /* smaller for mobile */
+    border-radius: 18px;
+    margin-top: 15px;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all 0.5s ease;
+  }
 
-    p {
-      font-size: 1.2em;
-      margin: 12px 0;
-    }
+  img.show {
+    opacity: 1;
+    transform: scale(1);
+  }
 
-    /* Hidden photo */
-    img {
-      max-width: 90%;
-      border-radius: 18px;
-      margin-top: 20px;
-      opacity: 0;
-      transform: scale(0.8);
-      transition: all 0.5s ease;
-    }
+  /* Cover as icon hint */
+  .cover {
+    position: absolute;
+    inset: 0;
+    background: rgba(255,255,255,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 2em; /* show as icon */
+    font-weight: 700;
+    backdrop-filter: blur(6px);
+  }
 
-    img.show {
-      opacity: 1;
-      transform: scale(1);
-    }
+  @media (max-width: 600px) {
+    h1 { font-size: 1.6em; }
+    .cover { font-size: 2.2em; }
+    img { max-width: 80%; }
+  }
+</style>
 
-    /* Cover */
-    .cover {
-      position: absolute;
-      inset: 0;
-      background: rgba(255,255,255,0.2);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      font-size: 1.2em;
-      font-weight: 700;
-      backdrop-filter: blur(6px);
-    }
+<div class="card">
+  <!-- Icons as hint -->
+  <div id="cover" class="cover">🎁✨</div>
 
-    .cover.hidden {
-      display: none;
-    }
-
-    @media (max-width: 600px) {
-      h1 { font-size: 2.2em; }
-      p { font-size: 1.05em; }
-    }
-  </style>
-</head>
-<body>
-
-  <!-- Música -->
-  <audio id="bgm" loop>
-    <source src="song.mp3" type="audio/mpeg">
-  </audio>
-
-  <h1>🎂 Paula fa 30 🎂</h1>
-  <div class="subtitle">Benvinguda a l'edat on ja ho saps tot (però no gaire)</div>
-
-  <div class="card">
-
-    <p>30 anys.</p>
-    <p>Ni jove ni gran.</p>
-    <p>Exactament en el teu prime.</p>
-
-    <img id="photo" src="foto.jpg" alt="Paula mode aniversari">
-
-    <div id="cover" class="cover">
-      Toca per descobrir 🎁
-    </div>
-
-  </div>
-
-  <script>
-    const audio = document.getElementById('bgm');
-    const photo = document.getElementById('photo');
-    const cover = document.getElementById('cover');
-
-    cover.addEventListener('click', () => {
-      cover.classList.add('hidden');
-      photo.classList.add('show');
-      audio.play();
-    });
-  </script>
-
-</body>
-</html>
+  <img id="photo" src="foto.jpg" alt="Paula mode aniversari">
+</div>
