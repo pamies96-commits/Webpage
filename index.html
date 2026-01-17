@@ -97,32 +97,28 @@
   <h1>🎂 Paula fa 30 🎂</h1>
 
   <div class="card">
-  <!-- image hidden at start -->
-  <img id="photo" src="foto.jpg" alt="Paula mode aniversari">
+    <!-- image hidden at start -->
+    <img id="photo" src="foto.jpg" alt="Paula mode aniversari">
 
-  <!-- hidden text -->
-  <div id="revealText" style="opacity:0; transition: opacity 0.6s; margin-top: 15px; color: #fff; font-size: 1.2em;">
-    Ni jove ni gran.<br>
-    Exactament en el teu prime.
+    <!-- overlay with icons as hint -->
+    <div id="cover" class="cover">🎁✨</div>
   </div>
 
-  <!-- overlay with icons as hint -->
-  <div id="cover" class="cover">🎁✨</div>
-</div>
+  <!-- background music -->
+  <audio id="bgm" loop>
+    <source src="song.mp3" type="audio/mpeg">
+  </audio>
 
-<script>
-  const audio = document.getElementById('bgm');
-  const photo = document.getElementById('photo');
-  const cover = document.getElementById('cover');
-  const revealText = document.getElementById('revealText');
+  <script>
+    const audio = document.getElementById('bgm');
+    const photo = document.getElementById('photo');
+    const cover = document.getElementById('cover');
 
-  cover.addEventListener('click', () => {
-    cover.classList.add('hidden');
-    photo.classList.add('show');
-    revealText.style.opacity = 1; // show the text
-    audio.play().catch(() => console.log("Autoplay prevented"));
-  });
-</script>
-
+    cover.addEventListener('click', () => {
+      cover.classList.add('hidden');
+      photo.classList.add('show');
+      audio.play().catch(() => console.log("Autoplay prevented"));
+    });
+  </script>
 </body>
 </html>
