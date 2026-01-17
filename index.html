@@ -1,57 +1,145 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ca">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Happy Birthday Paula!</title>
-  <!-- Google Font for a fun cursive heading -->
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  <title>Feliç aniversari, Paula 💖</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+
   <style>
     body {
       margin: 0;
       padding: 0;
-      background: linear-gradient(to bottom right, #FFDEE9, #B5FFFC);
+      background: linear-gradient(135deg, #ff5fa2, #ffb3d9);
       text-align: center;
-      font-family: Arial, sans-serif;
-      color: #333;
+      font-family: 'Montserrat', sans-serif;
+      color: #fff;
+      overflow-x: hidden;
     }
+
     h1 {
-      margin-top: 50px;
+      margin-top: 40px;
       font-family: 'Pacifico', cursive;
-      font-size: 4em;
-      color: #6C63FF;
-      animation: fadeIn 2s ease-in;
+      font-size: 3.8em;
+      color: #fff;
+      text-shadow: 3px 3px #ff2f92;
+      animation: zoomIn 1.5s ease;
     }
+
+    .subtitle {
+      font-size: 1.6em;
+      margin: 20px;
+      font-weight: 700;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.15);
+      margin: 30px auto;
+      padding: 25px;
+      max-width: 600px;
+      border-radius: 20px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+      backdrop-filter: blur(5px);
+    }
+
     p {
-      font-size: 1.5em;
-      margin: 20px 0;
-      animation: fadeIn 3s ease-in;
+      font-size: 1.3em;
+      margin: 15px 0;
     }
+
     img {
       max-width: 90%;
-      height: auto;
-      margin: 20px auto;
-      display: block;
-      animation: bounce 3s infinite alternate;
+      border-radius: 20px;
+      margin-top: 20px;
+      animation: float 3s ease-in-out infinite;
     }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+
+    .emoji {
+      font-size: 2em;
     }
-    @keyframes bounce {
-      from { transform: translateY(0); }
-      to { transform: translateY(-20px); }
+
+    .footer {
+      margin: 40px 10px 20px;
+      font-size: 1.1em;
+      opacity: 0.9;
     }
-    /* Responsive text sizing for mobile */
+
+    /* Animations */
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+      100% { transform: translateY(0); }
+    }
+
+    @keyframes zoomIn {
+      from { transform: scale(0.5); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    /* Confetti dots */
+    .confetti {
+      position: fixed;
+      width: 8px;
+      height: 8px;
+      background: #fff;
+      top: -10px;
+      animation: fall linear infinite;
+      border-radius: 50%;
+    }
+
+    @keyframes fall {
+      to { transform: translateY(110vh) rotate(360deg); }
+    }
+
+    /* Mobile */
     @media (max-width: 600px) {
-      h1 { font-size: 2.5em; margin-top: 30px; }
-      p { font-size: 1.2em; }
+      h1 { font-size: 2.6em; }
+      p { font-size: 1.1em; }
     }
   </style>
 </head>
 <body>
-  <h1>Happy Birthday Paula!</h1>
-  <p>Wishing you laughter, love, and lots of cake today!</p>
-  <img src="foto.jpg" alt="Birthday celebration">
+
+  <!-- Confetti -->
+  <script>
+    for (let i = 0; i < 40; i++) {
+      const c = document.createElement('div');
+      c.className = 'confetti';
+      c.style.left = Math.random() * 100 + 'vw';
+      c.style.animationDuration = (Math.random() * 3 + 2) + 's';
+      c.style.background = ['#fff','#ff2f92','#ffd1e8'][Math.floor(Math.random()*3)];
+      document.body.appendChild(c);
+    }
+  </script>
+
+  <h1>🎤 Feliç aniversari, Paula! 🎂</h1>
+  <div class="subtitle">Mode Rosalía: ACTIVAT 💅🔥</div>
+
+  <div class="card">
+    <p>Avui és el teu dia i s'ha de celebrar <strong>com una diva</strong>.</p>
+    <p>Moltes espelmes? No ho direm... 👀😂</p>
+    <p>Que et regalin coses cares, menjar infinit i zero responsabilitats ✨</p>
+    <p class="emoji">💖🍰🎉👑</p>
+
+    <p><em>"Motomami energy only"</em></p>
+
+    <img src="foto.jpg" alt="Paula en mode estrella">
+  </div>
+
+  <div class="card">
+    <p>Objectius per avui:</p>
+    <p>✔ Menjar pastís sense culpa</p>
+    <p>✔ Ballar com si ningú mirés</p>
+    <p>✔ Fer-te 100 selfies</p>
+    <p>✔ Ser encara més fabulosa</p>
+  </div>
+
+  <div class="footer">
+    Fet amb amor, drama i molt rosa 💕<br>
+    Ets icònica, Paula.
+  </div>
+
 </body>
 </html>
