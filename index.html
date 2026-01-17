@@ -16,7 +16,6 @@
       text-align: center;
       font-family: 'Montserrat', sans-serif;
       color: #fff;
-      overflow-x: hidden;
     }
 
     h1 {
@@ -26,24 +25,29 @@
       text-shadow: 2px 2px #ff2f92;
     }
 
-    .subtitle, .card p {
-      font-size: 1.3em;
-      margin: 15px 0;
-      opacity: 0;
-      transform: scale(0.8);
-      transition: all 0.6s ease;
-    }
-
     .card {
       background: rgba(255,255,255,0.15);
-      margin: 30px auto;
-      padding: 25px;
-      max-width: 600px;
+      margin: 20px auto;
+      padding: 20px;
+      max-width: 90%;
       border-radius: 18px;
       box-shadow: 0 8px 18px rgba(0,0,0,0.2);
       backdrop-filter: blur(4px);
       position: relative;
       overflow: hidden;
+    }
+
+    .card p {
+      font-size: 1.2em;
+      margin: 12px 0;
+      opacity: 0;
+      transform: scale(0.8);
+      transition: all 0.5s ease;
+    }
+
+    .card p.show {
+      opacity: 1;
+      transform: scale(1);
     }
 
     img {
@@ -52,15 +56,14 @@
       margin-top: 20px;
       opacity: 0;
       transform: scale(0.8);
-      transition: all 0.6s ease;
+      transition: all 0.5s ease;
     }
 
-    img.show, .card p.show {
+    img.show {
       opacity: 1;
       transform: scale(1);
     }
 
-    /* Cover */
     .cover {
       position: absolute;
       inset: 0;
@@ -72,7 +75,7 @@
       font-size: 1.2em;
       font-weight: 700;
       backdrop-filter: blur(6px);
-      transition: all 0.5s ease;
+      transition: opacity 0.5s ease;
     }
 
     .cover.hidden {
@@ -81,8 +84,9 @@
     }
 
     @media (max-width: 600px) {
-      h1 { font-size: 2.2em; }
-      .card p { font-size: 1.05em; }
+      h1 { font-size: 2em; margin-top: 30px; }
+      .card p { font-size: 1em; }
+      .cover { font-size: 1em; }
     }
   </style>
 </head>
@@ -96,21 +100,16 @@
   <h1>🎂 Paula fa 30 🎂</h1>
 
   <div class="card">
-
-    <p class="hidden">30 anys.</p>
-    <p class="hidden">Ni jove ni gran.</p>
-    <p class="hidden">Exactament en el teu prime.</p>
+    <p>30 anys.</p>
+    <p>ni petita ni gran</p>
+    <p>exactament en el teu prime</p>
 
     <img id="photo" src="foto.jpg" alt="Paula mode aniversari">
 
     <div id="cover" class="cover">
       Toca per descobrir 🎁
     </div>
-
   </div>
-
-  <!-- Confetti canvas -->
-  <canvas id="confetti"></canvas>
 
   <script>
     const audio = document.getElementById('bgm');
@@ -118,72 +117,11 @@
     const cover = document.getElementById('cover');
     const texts = document.querySelectorAll('.card p');
 
-    // Confetti setup
-    const canvas = document.getElementById('confetti');
-    const ctx = canvas.getContext('2d');
-    let confettiElements = [];
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
-    function createConfetti() {
-      for (let i = 0; i < 150; i++) {
-        confettiElements.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height - canvas.height,
-          r: Math.random() * 6 + 4,
-          d: Math.random() * 10 + 5,
-          color: `hsl(${Math.random() * 360}, 100%, 50%)`,
-          tilt: Math.random() * 10 - 10,
-          tiltAngleIncrement: Math.random() * 0.07 + 0.05
-        });
-      }
-    }
-
-    function drawConfetti() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      confettiElements.forEach(c => {
-        ctx.beginPath();
-        ctx.lineWidth = c.r / 2;
-        ctx.strokeStyle = c.color;
-        ctx.moveTo(c.x + c.tilt + c.r / 4, c.y);
-        ctx.lineTo(c.x + c.tilt, c.y + c.tilt + c.r / 4);
-        ctx.stroke();
-      });
-      updateConfetti();
-    }
-
-    function updateConfetti() {
-      confettiElements.forEach(c => {
-        c.tiltAngle += c.tiltAngleIncrement;
-        c.y += (Math.cos(c.d) + 3 + c.r / 2) / 2;
-        c.tilt = Math.sin(c.tiltAngle) * 15;
-        if (c.y > canvas.height) {
-          c.y = -10;
-          c.x = Math.random() * canvas.width;
-        }
-      });
-      requestAnimationFrame(drawConfetti);
-    }
-
     cover.addEventListener('click', () => {
       cover.classList.add('hidden');
-
-      // Mostrar texto y foto
       photo.classList.add('show');
       texts.forEach(t => t.classList.add('show'));
-
-      // Reproducir música
       audio.play();
-
-      // Confetti
-      createConfetti();
-      drawConfetti();
-    });
-
-    // Ajuste de canvas al redimensionar
-    window.addEventListener('resize', () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
     });
   </script>
 
