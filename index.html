@@ -3,35 +3,32 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Feliç aniversari, Paula 💖</title>
+  <title>30 anys Paula 🎉</title>
 
   <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 
   <style>
     body {
       margin: 0;
       padding: 0;
-      background: linear-gradient(135deg, #ff5fa2, #ffb3d9);
+      background: linear-gradient(135deg, #ff4fa3, #ffb3d9);
       text-align: center;
       font-family: 'Montserrat', sans-serif;
       color: #fff;
-      overflow-x: hidden;
     }
 
     h1 {
       margin-top: 40px;
-      font-family: 'Pacifico', cursive;
-      font-size: 3.8em;
-      color: #fff;
-      text-shadow: 3px 3px #ff2f92;
-      animation: zoomIn 1.5s ease;
+      font-size: 3em;
+      font-weight: 700;
+      text-shadow: 2px 2px #ff2f92;
     }
 
     .subtitle {
-      font-size: 1.6em;
-      margin: 20px;
-      font-weight: 700;
+      font-size: 1.3em;
+      margin: 15px;
+      opacity: 0.9;
     }
 
     .card {
@@ -39,106 +36,68 @@
       margin: 30px auto;
       padding: 25px;
       max-width: 600px;
-      border-radius: 20px;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-      backdrop-filter: blur(5px);
+      border-radius: 18px;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.2);
+      backdrop-filter: blur(4px);
     }
 
     p {
-      font-size: 1.3em;
-      margin: 15px 0;
+      font-size: 1.2em;
+      margin: 12px 0;
     }
 
     img {
       max-width: 90%;
-      border-radius: 20px;
+      border-radius: 18px;
       margin-top: 20px;
-      animation: float 3s ease-in-out infinite;
-    }
-
-    .emoji {
-      font-size: 2em;
     }
 
     .footer {
       margin: 40px 10px 20px;
-      font-size: 1.1em;
-      opacity: 0.9;
-    }
-
-    /* Animations */
-    @keyframes float {
-      0% { transform: translateY(0); }
-      50% { transform: translateY(-15px); }
-      100% { transform: translateY(0); }
-    }
-
-    @keyframes zoomIn {
-      from { transform: scale(0.5); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
-    }
-
-    /* Confetti dots */
-    .confetti {
-      position: fixed;
-      width: 8px;
-      height: 8px;
-      background: #fff;
-      top: -10px;
-      animation: fall linear infinite;
-      border-radius: 50%;
-    }
-
-    @keyframes fall {
-      to { transform: translateY(110vh) rotate(360deg); }
+      font-size: 1em;
+      opacity: 0.85;
     }
 
     /* Mobile */
     @media (max-width: 600px) {
-      h1 { font-size: 2.6em; }
-      p { font-size: 1.1em; }
+      h1 { font-size: 2.2em; }
+      p { font-size: 1.05em; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Confetti -->
-  <script>
-    for (let i = 0; i < 40; i++) {
-      const c = document.createElement('div');
-      c.className = 'confetti';
-      c.style.left = Math.random() * 100 + 'vw';
-      c.style.animationDuration = (Math.random() * 3 + 2) + 's';
-      c.style.background = ['#fff','#ff2f92','#ffd1e8'][Math.floor(Math.random()*3)];
-      document.body.appendChild(c);
-    }
-  </script>
+  <!-- Música automàtica -->
+  <audio autoplay loop>
+    <source src="song.mp3" type="audio/mpeg">
+    El teu navegador no suporta àudio.
+  </audio>
 
-  <h1>🎤 Feliç aniversari, Paula! 🎂</h1>
-  <div class="subtitle">Mode Rosalía: ACTIVAT 💅🔥</div>
+  <h1>🎂 Paula fa 30 🎂</h1>
+  <div class="subtitle">Benvinguda a l'edat on ja ho saps tot (però no gaire)</div>
 
   <div class="card">
-    <p>Avui és el teu dia i s'ha de celebrar <strong>com una diva</strong>.</p>
-    <p>Moltes espelmes? No ho direm... 👀😂</p>
-    <p>Que et regalin coses cares, menjar infinit i zero responsabilitats ✨</p>
-    <p class="emoji">💖🍰🎉👑</p>
+    <p>30 anys.</p>
+    <p>Ni jove ni gran.</p>
+    <p>Exactament en el teu prime.</p>
 
-    <p><em>"Motomami energy only"</em></p>
+    <p>Avui toca celebrar-ho bé:</p>
+    <p>• Menjar pastís</p>
+    <p>• Beure el que vulguis</p>
+    <p>• Riure molt</p>
 
-    <img src="foto.jpg" alt="Paula en mode estrella">
+    <img src="foto.jpg" alt="Paula mode aniversari">
   </div>
 
   <div class="card">
-    <p>Objectius per avui:</p>
-    <p>✔ Menjar pastís sense culpa</p>
-    <p>✔ Ballar com si ningú mirés</p>
-    <p>✔ Fer-te 100 selfies</p>
-    <p>✔ Ser encara més fabulosa</p>
+    <p>Regles del dia:</p>
+    <p>✔ No parlar de l'edat</p>
+    <p>✔ Fer fotos random</p>
+    <p>✔ Ballar encara que faci mandra</p>
   </div>
 
   <div class="footer">
-    Fet amb amor, drama i molt rosa 💕<br>
-    Ets icònica, Paula.
+    30 però amb estil 💅
   </div>
 
 </body>
