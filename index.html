@@ -39,6 +39,8 @@
       border-radius: 18px;
       box-shadow: 0 8px 18px rgba(0,0,0,0.2);
       backdrop-filter: blur(4px);
+      position: relative;
+      overflow: hidden;
     }
 
     p {
@@ -46,19 +48,39 @@
       margin: 12px 0;
     }
 
+    /* Hidden photo */
     img {
       max-width: 90%;
       border-radius: 18px;
       margin-top: 20px;
+      opacity: 0;
+      transform: scale(0.8);
+      transition: all 0.5s ease;
     }
 
-    .footer {
-      margin: 40px 10px 20px;
-      font-size: 1em;
-      opacity: 0.85;
+    img.show {
+      opacity: 1;
+      transform: scale(1);
     }
 
-    /* Mobile */
+    /* Cover */
+    .cover {
+      position: absolute;
+      inset: 0;
+      background: rgba(255,255,255,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1.2em;
+      font-weight: 700;
+      backdrop-filter: blur(6px);
+    }
+
+    .cover.hidden {
+      display: none;
+    }
+
     @media (max-width: 600px) {
       h1 { font-size: 2.2em; }
       p { font-size: 1.05em; }
@@ -67,37 +89,39 @@
 </head>
 <body>
 
-  <!-- Música automàtica -->
+  <!-- Música -->
   <audio id="bgm" loop>
     <source src="song.mp3" type="audio/mpeg">
-    El teu navegador no suporta àudio.
   </audio>
-
-  
-
-  <script>
-    const audio = document.getElementById('bgm');
-
-    function playMusic() {
-      audio.play();
-    }
-
-    // Try autoplay after user interaction
-    document.body.addEventListener('click', () => {
-      audio.play();
-    }, { once: true });
-  </script>
 
   <h1>🎂 Paula fa 30 🎂</h1>
   <div class="subtitle">Benvinguda a l'edat on ja ho saps tot (però no gaire)</div>
 
   <div class="card">
+
     <p>30 anys.</p>
     <p>Ni jove ni gran.</p>
     <p>Exactament en el teu prime.</p>
 
-    <img src="foto.jpg" alt="Paula mode aniversari">
+    <img id="photo" src="foto.jpg" alt="Paula mode aniversari">
+
+    <div id="cover" class="cover">
+      Toca per descobrir 🎁
+    </div>
+
   </div>
+
+  <script>
+    const audio = document.getElementById('bgm');
+    const photo = document.getElementById('photo');
+    const cover = document.getElementById('cover');
+
+    cover.addEventListener('click', () => {
+      cover.classList.add('hidden');
+      photo.classList.add('show');
+      audio.play();
+    });
+  </script>
 
 </body>
 </html>
